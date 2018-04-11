@@ -30,10 +30,13 @@ public class Teacher extends Person{
             return "My name is Tom. I am 21 years old. I am a Teacher. I teach No Class.";
         } else {
             String allClass = "";
-            for (Klass klass : this.classes) {
-                allClass = Integer.toString( klass.getNumber())+", "+allClass;
+            for (Klass  klass: this.classes) {
+                if (allClass == "") {
+                    allClass = Integer.toString(klass.getNumber());
+                } else {
+                    allClass = allClass+", "+Integer.toString(klass.getNumber());
+                }
             }
-            allClass = allClass.substring(0,allClass.length()-2);
             return
                     super.introduce()+" I am a Teacher. I teach Class "+allClass+".";
         }
