@@ -1,5 +1,6 @@
 package practice11;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,11 +30,14 @@ public class Teacher extends Person{
     }
 
     public String introduce(){
-        if (this.classes.size() == 0) {
+        List<Klass> sortedClasses = this.classes.stream()
+                                    .sorted(Comparator.comparingInt(Klass::getNumber))
+                                    .collect(Collectors.toList());
+        if (sortedClasses.size() == 0) {
             return "My name is Tom. I am 21 years old. I am a Teacher. I teach No Class.";
         } else {
             String allClass = "";
-            for (Klass  klass: this.classes) {
+            for (Klass  klass:sortedClasses) {
                 if (allClass == "") {
                     allClass = Integer.toString(klass.getNumber());
                 } else {
